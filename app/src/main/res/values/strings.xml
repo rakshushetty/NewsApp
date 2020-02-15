@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">NewsApp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="oops_something_went_wrong">Oops Something went wrong!</string>
+    <string name="loading">Loading...</string>
+    <string name="cd_news_image">News Image</string>
+    <string name="cd_detailed_screen_image">detailed screen image</string>
 </resources>
