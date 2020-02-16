@@ -10,6 +10,9 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 
+/**
+ * Repository class for fetching articles from server and to parse all articles
+ */
 class NewsRepo {
 
     /**

@@ -9,6 +9,9 @@ import com.test.newsapp.NewsData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * ViewModel for fetching article data from server
+ */
 class NewsViewModel : ViewModel() {
 
     private val newsRepo = NewsRepo()
@@ -16,6 +19,9 @@ class NewsViewModel : ViewModel() {
     val newsData: LiveData<ApiResults<NewsData>>
         get() = newsMutableLiveData
 
+    /**
+     * Launches coroutine for fetching article in background thread
+     */
     fun getData() {
         viewModelScope.launch(Dispatchers.Default) {
             newsMutableLiveData.postValue(newsRepo.getData())

@@ -18,7 +18,7 @@ import com.test.newsapp.R
 import com.test.newsapp.callbacks.ItemClickListener
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment to list all the articles, on tap of any article, it will navigate to webView to show in detail
  */
 const val DATA = "data"
 const val IS_SAVED_DATA = "is_saved_data"
@@ -48,6 +48,7 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list), ItemClickListene
         rvNews.layoutManager = LinearLayoutManager(requireContext())
         rvNews.adapter = rvAdapter
 
+        /*Observe liveDate to update screeen*/
         newsViewModel.newsData.observe(this) { apiResults ->
             when (apiResults) {
                 is ApiResults.Success -> {
@@ -71,6 +72,13 @@ class NewsListFragment : Fragment(R.layout.fragment_news_list), ItemClickListene
         }
     }
 
+    /**
+     * on Any article clicked, This will navigate to details screen
+     *
+     * @param t article data
+     * @param pos position of data
+     * @param tag tag
+     */
     override fun onItemClicked(t: Article, pos: Int, tag: String?) {
         if (activity is MainActivity) {
             (activity as MainActivity).addFragment(

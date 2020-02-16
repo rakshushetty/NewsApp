@@ -15,10 +15,13 @@ import com.test.newsapp.R
 import com.test.newsapp.utils.SQLiteManager
 
 /**
- * A simple [Fragment] subclass.
+ * Shows the detailed view of the msg, Opens the msg link in a webView
  */
 class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
 
+    /* Is this fragment is used for showing latest item or saved item from db
+    * If true, It is used to show current item and save to db button is enabled
+    * If false, It is used for showing db saved item and delete button is enabled */
     private var isSaveButtonEnabled = false
 
     companion object {
@@ -37,6 +40,12 @@ class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
         }
     }
 
+    /**
+     * Initialize View items
+     *
+     * @param view View reference for getting view items
+     * @param article Data of the article to be showed
+     */
     @SuppressLint("SetJavaScriptEnabled")
     private fun initView(view: View, article: Article) {
         view.apply {
@@ -58,6 +67,12 @@ class NewsDetailsFragment : Fragment(R.layout.fragment_news_details) {
         }
     }
 
+    /**
+     * Performs insert or delete operation
+     *
+     * @param db db instance
+     * @param article data object under operation
+     */
     private fun View.performDbOperation(db: SQLiteManager, article: Article) {
         if (isSaveButtonEnabled) {
             val status = db.addToDb(article)

@@ -20,9 +20,15 @@ const val KEY_TITLE: String = "title"
 const val KEY_URL: String = "url"
 const val KEY_URL_TO_IMAGE: String = "url_to_image"
 
+/**
+ * Helper class for storing and deleting data from db
+ */
 class SQLiteManager private constructor(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DB_VERSION) {
 
+    /**
+     * Return instance of helper class, if none is present then a new instance is created
+     */
     companion object {
         @Volatile
         private var instance: SQLiteManager? = null
@@ -36,6 +42,9 @@ class SQLiteManager private constructor(context: Context) :
         }
     }
 
+    /**
+     * Creates a new table for storing articles
+     */
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable =
             "CREATE TABLE $TABLE_NAME ( " +
@@ -50,10 +59,18 @@ class SQLiteManager private constructor(context: Context) :
         db?.execSQL(createTable)
     }
 
+    /**
+     * On upgrade of application
+     */
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         //  NO-OP
     }
 
+    /**
+     * Adds a article into db
+     *
+     * @param article instance to be added to db
+     */
     fun addToDb(article: Article): Long {
         val contentValues = ContentValues()
         contentValues.apply {
@@ -72,6 +89,11 @@ class SQLiteManager private constructor(context: Context) :
         return status
     }
 
+    /**
+     * Deletes article from database
+     *
+     * @param article instance to be deleted
+     */
     fun deleteItem(article: Article): Int {
         val db = writableDatabase
         val status = db.delete(TABLE_NAME, "$KEY_TITLE = ?", arrayOf(article.title))
@@ -79,6 +101,9 @@ class SQLiteManager private constructor(context: Context) :
         return status
     }
 
+    /**
+     * Return all article data present in db
+     */
     fun getAllData(): ArrayList<Article> {
         val query = "SELECT * FROM $TABLE_NAME"
         val db = writableDatabase

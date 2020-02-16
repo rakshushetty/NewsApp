@@ -8,10 +8,19 @@ const val NEWS_LIST = 0
 const val SAVED_NEWS = 1
 const val SCREEN_COUNT = 2
 
-class VpAdapater(fm: FragmentManager) : FragmentStatePagerAdapter(
+/**
+ * Adapter class for showing saved and current news items
+ */
+class VpAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(
     fm,
     BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT
 ) {
+
+    /**
+     * Returns fragment instance for the given position
+     *
+     * @param position position of tab
+     */
     override fun getItem(position: Int): Fragment {
         return when (position) {
             NEWS_LIST -> NewsListFragment.newInstance()
@@ -20,6 +29,9 @@ class VpAdapater(fm: FragmentManager) : FragmentStatePagerAdapter(
         }
     }
 
+    /**
+     * Returns total number of tabs
+     */
     override fun getCount(): Int {
         return SCREEN_COUNT
     }

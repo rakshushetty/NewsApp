@@ -9,11 +9,12 @@ import com.google.android.material.tabs.TabLayout
 import com.test.newsapp.R
 
 /**
- * A simple [Fragment] subclass.
+ * HomeFragment which contains the tabLayout for showing current items and saved items
  */
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
-    private lateinit var vpAdapter: VpAdapater
+    /*View items*/
+    private lateinit var vpAdapter: VpAdapter
     private lateinit var tabLayout: TabLayout
     private lateinit var viewPager: ViewPager
     private val tabItemsText = arrayOf("NEWS", "SAVED")
@@ -27,12 +28,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         tabLayout = view.findViewById(R.id.tlNews)
         viewPager = view.findViewById(R.id.vpNews)
-        vpAdapter = VpAdapater(childFragmentManager)
+        vpAdapter = VpAdapter(childFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         viewPager.adapter = vpAdapter
 
         for (tabIndex in 0 until tabLayout.tabCount) {
-            tabLayout.getTabAt(tabIndex)?.text = tabItemsText[tabIndex]
+            tabLayout.getTabAt(tabIndex)?.text = tabItemsText[tabIndex] // change tab item names
         }
     }
 

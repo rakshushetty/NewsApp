@@ -15,8 +15,18 @@ import com.test.newsapp.utils.Utils
 const val CLOUD_MESSAGING = "cloud_messaging"
 const val CLOUD_MESSAGING_NAME = "News Notification channel"
 
+/**
+ * Google Cloud messaging service
+ *
+ * When notification is received, it creates a notification and shows it to the user
+ */
 class NewsMessagingService : FirebaseMessagingService() {
 
+    /**
+     * Method invoked when a new msg is received
+     *
+     * @param remoteMessage Message object
+     */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
@@ -24,6 +34,11 @@ class NewsMessagingService : FirebaseMessagingService() {
         sendNotification(remoteMessage)
     }
 
+    /**
+     * Creates notification
+     *
+     * @param remoteMessage Message data object
+     */
     private fun sendNotification(remoteMessage: RemoteMessage) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Utils.makeNotificationChannel(

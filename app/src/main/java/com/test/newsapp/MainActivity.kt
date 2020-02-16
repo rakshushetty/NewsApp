@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.test.newsapp.feature.HomeFragment
 
-
+/**
+ * Main activity class
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,6 +20,13 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    /**
+     * Adds a given fragment to the activity
+     *
+     * @param fragment fragment instance to be added
+     * @param tag tag for fragment reference
+     * @param isAddToBackStack is this fragment to be added to backStack
+     */
     fun addFragment(fragment: Fragment, tag: String?, isAddToBackStack: Boolean = false) {
         supportFragmentManager.beginTransaction().apply {
             this.add(

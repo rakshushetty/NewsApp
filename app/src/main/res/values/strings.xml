@@ -8,7 +8,7 @@
     <string name="cd_detailed_screen_image">detailed screen image</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
-    <string name="saved_list_empty">Saved List is Empty!</string>
+    <string name="saved_list_empty">Saved List is Empty! Try pull refresh.</string>
     <string name="successfully_stored">Successfully Stored to db!</string>
     <string name="already_stored">Already stored!</string>
     <string name="deleted">Successfully Deleted, Please Refresh screen.</string>

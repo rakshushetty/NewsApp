@@ -17,7 +17,8 @@ import com.test.newsapp.callbacks.ItemClickListener
 import com.test.newsapp.utils.SQLiteManager
 
 /**
- * A simple [Fragment] subclass.
+ * Fragment class to show all saved articles, on click of any articles, it will navigate to details
+ * screen and a delete button is shown in details screen to delete article
  */
 class SavedNewsFragment : Fragment(R.layout.fragment_news_list), ItemClickListener<Article> {
 
@@ -50,6 +51,9 @@ class SavedNewsFragment : Fragment(R.layout.fragment_news_list), ItemClickListen
         }
     }
 
+    /**
+     * Loads data into view. If there is no data, empty message is shown
+     */
     private fun loadData(context: Context) {
         errorText.text = getString(R.string.loading)
         viewFlipper.displayedChild = 0
@@ -65,6 +69,9 @@ class SavedNewsFragment : Fragment(R.layout.fragment_news_list), ItemClickListen
         swipeRefreshLayout.isRefreshing = false
     }
 
+    /**
+     * On any saved article clicked, Navigates to details screen
+     */
     override fun onItemClicked(t: Article, pos: Int, tag: String?) {
         if (activity is MainActivity) {
             (activity as MainActivity).addFragment(

@@ -18,6 +18,12 @@ import java.net.URL
 
 
 object Utils {
+    /**
+     * Loads the image data from data url into imageView
+     *
+     * @param data image url
+     * @param imageView imageView instance to which image from data link is loaded
+     */
     fun setImageData(data: String?, imageView: ImageView) {
         if (data.isNullOrEmpty()) imageView.setImageResource(R.color.imageBackGround)
         CoroutineScope(Dispatchers.Default).launch {
@@ -41,6 +47,14 @@ object Utils {
         }
     }
 
+    /**
+     * Creates a notification channel for showing notification
+     *
+     * @param id channel id
+     * @param name channel name
+     * @param importance notification priority
+     * @param context present context reference
+     */
     @RequiresApi(api = Build.VERSION_CODES.O)
     fun makeNotificationChannel(id: String?, name: String?, importance: Int, context: Context) {
         val channel = NotificationChannel(id, name, importance)
