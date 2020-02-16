@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "145919885598",
+    "firebase_url": "https://newsapp-baa8b.firebaseio.com",
+    "project_id": "newsapp-baa8b",
+    "storage_bucket": "newsapp-baa8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:145919885598:android:10c5fac9b5a50ce27a490f",
+        "android_client_info": {
+          "package_name": "com.test.newsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "145919885598-mufmq1bc6m0cb3v5t9f6pr8pvd75f6mk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAfZls7Ck3AIfpLQNNgl8HUXyRPSI3rtkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "145919885598-mufmq1bc6m0cb3v5t9f6pr8pvd75f6mk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

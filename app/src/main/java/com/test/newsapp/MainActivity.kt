@@ -18,11 +18,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun addFragment(
-        fragment: Fragment,
-        tag: String?,
-        isAddToBackStack: Boolean = false
-    ) {
+    fun addFragment(fragment: Fragment, tag: String?, isAddToBackStack: Boolean = false) {
         supportFragmentManager.beginTransaction().apply {
             this.add(
                 R.id.activityContainer,
