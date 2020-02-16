@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">NewsApp</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="oops_something_went_wrong">Oops Something went wrong!</string>
-    <string name="loading">Loading...</string>
+    <string name="loading">Loading…</string>
     <string name="cd_news_image">News Image</string>
     <string name="cd_detailed_screen_image">detailed screen image</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
+    <string name="saved_list_empty">Saved List is Empty!</string>
+    <string name="successfully_stored">Successfully Stored to db!</string>
+    <string name="already_stored">Already stored!</string>
+    <string name="deleted">Successfully Deleted, Please Refresh screen.</string>
+    <string name="something_wrong">Something went wrong</string>
 </resources>

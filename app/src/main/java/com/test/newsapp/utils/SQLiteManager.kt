@@ -24,39 +24,37 @@ class SQLiteManager private constructor(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DB_VERSION) {
 
     companion object {
+        @Volatile
         private var instance: SQLiteManager? = null
 
-        fun newInstance(context: Context): SQLiteManager? {
-            return synchronized(this) {
-                if (instance == null) {
-                    instance = SQLiteManager(context)
-                }
-                instance
+        @Synchronized
+        fun newInstance(context: Context): SQLiteManager {
+            if (instance == null) {
+                instance = SQLiteManager(context)
             }
+            return instance!!
         }
-
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable =
             "CREATE TABLE $TABLE_NAME ( " +
-                    "$KEY_TITLE TEXT PRIMARY KEY, " +   // 1
-                    "$KEY_AUTHOR TEXT, " +              // 2
-                    "$KEY_CONTENT TEXT, " +             // 3
-                    "$KEY_DESCRIPTION TEXT, " +         // 4
-                    "$KEY_PUBLISHED_AT TEXT, " +        // 5
-                    "$KEY_SOURCE TEXT, " +              // 6
-                    "$KEY_URL TEXT, " +                 // 7
-                    "$KEY_URL_TO_IMAGE TEXT )"          // 8
+                    "$KEY_TITLE TEXT PRIMARY KEY, " +   // 0
+                    "$KEY_AUTHOR TEXT, " +              // 1
+                    "$KEY_CONTENT TEXT, " +             // 2
+                    "$KEY_DESCRIPTION TEXT, " +         // 3
+                    "$KEY_PUBLISHED_AT TEXT, " +        // 4
+                    "$KEY_SOURCE TEXT, " +              // 5
+                    "$KEY_URL TEXT, " +                 // 6
+                    "$KEY_URL_TO_IMAGE TEXT )"          // 7
         db?.execSQL(createTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
-        this.onCreate(db)
+        //  NO-OP
     }
 
-    fun addToDb(article: Article) {
+    fun addToDb(article: Article): Long {
         val contentValues = ContentValues()
         contentValues.apply {
             put(KEY_AUTHOR, article.author)
@@ -69,14 +67,16 @@ class SQLiteManager private constructor(context: Context) :
             put(KEY_URL_TO_IMAGE, article.urlToImage)
         }
         val db = writableDatabase
-        db.insert(TABLE_NAME, null, contentValues)
+        val status = db.insert(TABLE_NAME, null, contentValues)
         db.close()
+        return status
     }
 
-    fun deleteItem(article: Article) {
+    fun deleteItem(article: Article): Int {
         val db = writableDatabase
-        db.delete(TABLE_NAME, "id = ?", arrayOf(article.title))
+        val status = db.delete(TABLE_NAME, "$KEY_TITLE = ?", arrayOf(article.title))
         db.close()
+        return status
     }
 
     fun getAllData(): ArrayList<Article> {
@@ -88,13 +88,13 @@ class SQLiteManager private constructor(context: Context) :
             do {
                 val article = Article(
                     cursor.getString(1),
+                    cursor.getString(2),
                     cursor.getString(3),
                     cursor.getString(4),
-                    cursor.getString(5),
-                    Source(name = cursor.getString(6)),
-                    cursor.getString(1),
-                    cursor.getString(7),
-                    cursor.getString(8)
+                    Source(name = cursor.getString(5)),
+                    cursor.getString(0),
+                    cursor.getString(6),
+                    cursor.getString(7)
                 )
                 articleList.add(article)
             } while (cursor.moveToNext())

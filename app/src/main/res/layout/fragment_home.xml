@@ -10,7 +10,7 @@
         android:id="@+id/tlNews"
         android:layout_width="@dimen/match_constraints"
         android:layout_height="wrap_content"
-        android:background="#E1E0BA"
+        android:background="@color/tabColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tlNews"
         app:layout_constraintEnd_toEndOf="parent"

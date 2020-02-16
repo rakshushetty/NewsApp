@@ -15,7 +15,7 @@ class NewsRepo {
     /**
      * Method to do Api call and get data from server
      */
-    suspend fun getData(): ApiResults<NewsData> {
+    fun getData(): ApiResults<NewsData> {
         val result = StringBuilder()
         var urlConnection: HttpURLConnection? = null
         try {
@@ -46,7 +46,7 @@ class NewsRepo {
     /**
      * Parsing data using jason object and jasonArray
      */
-    private suspend fun parseNewsJson(result: StringBuilder): NewsData? {
+    private fun parseNewsJson(result: StringBuilder): NewsData? {
         if (result.isEmpty()) return null
         val newsObject = JSONObject(result.toString())
         val articleListJson: JSONArray? = newsObject.get("articles") as? JSONArray
